@@ -1,0 +1,111 @@
+entity WoWorkOrder {
+  
+  customsBrokerName String maxlength(255) 
+  customsContactName String maxlength(255) 
+  customsCurrency String maxlength(255) 
+  customsPhoneNumber String maxlength(255)    
+  customsValue Double   
+  fromAirportCode String maxlength(255) 
+  fromLocationType Integer max(11) 
+  jobContentDescr String maxlength(255) 
+  shipQuantity Integer max(11)
+  jobOriginalCost Integer max(11) 
+  quotedAmount String maxlength(255) 
+  assignTo String maxlength(255)
+  toCompany String maxlength(255)
+  toLocationType Integer max(11)
+  
+  dateCreated ZonedDateTime
+  jobNumber String maxlength(255)
+  
+  
+  jobCustomer String maxlength(255)
+  serviceType Long
+  jobSales String maxlength(255) 
+  jobDeadlineTime Long
+  jobTimeZone Long
+  shippingDate LocalDate
+  shippingTime Long
+  insuranceType Long
+  
+  isStorage Boolean
+  isPickPack Boolean
+  
+  shipTotalWeight String maxlength(255) 
+  shipmentCurrency String maxlength(255)
+  shipmentMetric String maxlength(255)
+  woRequestType Integer max(11)
+  
+  
+}
+
+entity WoTransportModes {    
+  name String maxlength(255)    
+}
+
+entity WoCustomsBrokerage { 
+   monthlyImportShipment String maxlength(255)
+   monthlyExportShipment String maxlength(255)
+   shipmentValue String maxlength(255)
+   productInfo String maxlength(255)
+   
+}
+
+entity WoStorage {
+
+  quantity Integer max(11)
+  spaceRequirement Float
+  productInfo String maxlength(255)
+
+}
+
+entity WoPickPack {
+  sku Float
+  avgOrders Float
+  shipmentWeight Float
+  shipmentSize Integer max(20)
+  monthlyVolume Integer max(20)
+  isPromotionalInserts Boolean
+  description String maxlength(255)
+}
+
+entity WoAdditionalServices {
+  name String maxlength(255)
+}
+
+entity WoPackageType {
+  name String maxlength(255)
+}
+
+entity WoShippingInfo {
+  monthlyShipVolume Integer max(20)
+  isCustomsBrokerage Boolean
+}
+
+entity WoShippingServices {
+ name String maxlength(255)
+}
+
+relationship ManyToMany {
+WoCustomsBrokerage to WoTransportModes
+WoPickPack to WoAdditionalServices
+WoShippingInfo to WoShippingServices
+} 
+
+relationship OneToOne {
+   WoWorkOrder to WoCustomsBrokerage
+   WoWorkOrder to WoStorage
+   WoWorkOrder to WoPickPack
+   WoWorkOrder to WoShippingInfo
+   WoStorage to WoPackageType 
+}
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+//paginate Job with pagination
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceImpl
+
+
+
