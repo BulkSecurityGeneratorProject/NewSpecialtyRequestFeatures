@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-wo-pick-pack-heading">Create or edit a Wo Pick Pack</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!woPickPack.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sku">Sku</label>
+                    <input type="number" class="form-control" name="sku" id="field_sku"
+                           formControlName="sku"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_avgOrders">Avg Orders</label>
+                    <input type="number" class="form-control" name="avgOrders" id="field_avgOrders"
+                           formControlName="avgOrders"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_shipmentWeight">Shipment Weight</label>
+                    <input type="number" class="form-control" name="shipmentWeight" id="field_shipmentWeight"
+                           formControlName="shipmentWeight"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_shipmentSize">Shipment Size</label>
+                    <input type="number" class="form-control" name="shipmentSize" id="field_shipmentSize"
+                           formControlName="shipmentSize"/>
+                    <div *ngIf="editForm.get('shipmentSize').invalid && (editForm.get('shipmentSize').dirty || editForm.get('shipmentSize').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('shipmentSize').errors.max">
+                            This field cannot be more than 20.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('shipmentSize')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_monthlyVolume">Monthly Volume</label>
+                    <input type="number" class="form-control" name="monthlyVolume" id="field_monthlyVolume"
+                           formControlName="monthlyVolume"/>
+                    <div *ngIf="editForm.get('monthlyVolume').invalid && (editForm.get('monthlyVolume').dirty || editForm.get('monthlyVolume').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('monthlyVolume').errors.max">
+                            This field cannot be more than 20.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('monthlyVolume')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isPromotionalInserts">Is Promotional Inserts</label>
+                    <input type="checkbox" class="form-control" name="isPromotionalInserts" id="field_isPromotionalInserts"
+                           formControlName="isPromotionalInserts"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.maxlength">
+                        This field cannot be longer than 255 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_woAdditionalServices">Wo Additional Services</label>
+                    <select class="form-control" id="field_woAdditionalServices" multiple name="woAdditionalServices" formControlName="woAdditionalServices">
+                        <option [ngValue]="getSelected(editForm.get('woAdditionalServices').value, woAdditionalServicesOption)" *ngFor="let woAdditionalServicesOption of woadditionalservices; trackBy: trackWoAdditionalServicesById">{{woAdditionalServicesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

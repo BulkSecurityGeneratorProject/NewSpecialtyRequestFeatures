@@ -1,0 +1,136 @@
+<div>
+    <h2 id="page-heading">
+        <span>Wo Work Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wo-work-order" [routerLink]="['/wo-work-order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Wo Work Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="woWorkOrders">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Customs Broker Name</span></th>
+            <th><span>Customs Contact Name</span></th>
+            <th><span>Customs Currency</span></th>
+            <th><span>Customs Phone Number</span></th>
+            <th><span>Customs Value</span></th>
+            <th><span>From Airport Code</span></th>
+            <th><span>From Location Type</span></th>
+            <th><span>Job Content Descr</span></th>
+            <th><span>Ship Quantity</span></th>
+            <th><span>Job Original Cost</span></th>
+            <th><span>Quoted Amount</span></th>
+            <th><span>Assign To</span></th>
+            <th><span>To Company</span></th>
+            <th><span>To Location Type</span></th>
+            <th><span>Date Created</span></th>
+            <th><span>Job Number</span></th>
+            <th><span>Job Customer</span></th>
+            <th><span>Service Type</span></th>
+            <th><span>Job Sales</span></th>
+            <th><span>Job Deadline Time</span></th>
+            <th><span>Job Time Zone</span></th>
+            <th><span>Shipping Date</span></th>
+            <th><span>Shipping Time</span></th>
+            <th><span>Insurance Type</span></th>
+            <th><span>Is Storage</span></th>
+            <th><span>Is Pick Pack</span></th>
+            <th><span>Ship Total Weight</span></th>
+            <th><span>Shipment Currency</span></th>
+            <th><span>Shipment Metric</span></th>
+            <th><span>Wo Request Type</span></th>
+            <th><span>Wo Customs Brokerage</span></th>
+            <th><span>Wo Storage</span></th>
+            <th><span>Wo Pick Pack</span></th>
+            <th><span>Wo Shipping Info</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let woWorkOrder of woWorkOrders ;trackBy: trackId">
+                <td><a [routerLink]="['/wo-work-order', woWorkOrder.id, 'view' ]">{{woWorkOrder.id}}</a></td>
+                <td>{{woWorkOrder.customsBrokerName}}</td>
+                <td>{{woWorkOrder.customsContactName}}</td>
+                <td>{{woWorkOrder.customsCurrency}}</td>
+                <td>{{woWorkOrder.customsPhoneNumber}}</td>
+                <td>{{woWorkOrder.customsValue}}</td>
+                <td>{{woWorkOrder.fromAirportCode}}</td>
+                <td>{{woWorkOrder.fromLocationType}}</td>
+                <td>{{woWorkOrder.jobContentDescr}}</td>
+                <td>{{woWorkOrder.shipQuantity}}</td>
+                <td>{{woWorkOrder.jobOriginalCost}}</td>
+                <td>{{woWorkOrder.quotedAmount}}</td>
+                <td>{{woWorkOrder.assignTo}}</td>
+                <td>{{woWorkOrder.toCompany}}</td>
+                <td>{{woWorkOrder.toLocationType}}</td>
+                <td>{{woWorkOrder.dateCreated | date:'medium'}}</td>
+                <td>{{woWorkOrder.jobNumber}}</td>
+                <td>{{woWorkOrder.jobCustomer}}</td>
+                <td>{{woWorkOrder.serviceType}}</td>
+                <td>{{woWorkOrder.jobSales}}</td>
+                <td>{{woWorkOrder.jobDeadlineTime}}</td>
+                <td>{{woWorkOrder.jobTimeZone}}</td>
+                <td>{{woWorkOrder.shippingDate | date:'mediumDate'}}</td>
+                <td>{{woWorkOrder.shippingTime}}</td>
+                <td>{{woWorkOrder.insuranceType}}</td>
+                <td>{{woWorkOrder.isStorage}}</td>
+                <td>{{woWorkOrder.isPickPack}}</td>
+                <td>{{woWorkOrder.shipTotalWeight}}</td>
+                <td>{{woWorkOrder.shipmentCurrency}}</td>
+                <td>{{woWorkOrder.shipmentMetric}}</td>
+                <td>{{woWorkOrder.woRequestType}}</td>
+                <td>
+                    <div *ngIf="woWorkOrder.woCustomsBrokerageId">
+                        <a [routerLink]="['../wo-customs-brokerage', woWorkOrder.woCustomsBrokerageId , 'view' ]" >{{woWorkOrder.woCustomsBrokerageId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="woWorkOrder.woStorageId">
+                        <a [routerLink]="['../wo-storage', woWorkOrder.woStorageId , 'view' ]" >{{woWorkOrder.woStorageId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="woWorkOrder.woPickPackId">
+                        <a [routerLink]="['../wo-pick-pack', woWorkOrder.woPickPackId , 'view' ]" >{{woWorkOrder.woPickPackId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="woWorkOrder.woShippingInfoId">
+                        <a [routerLink]="['../wo-shipping-info', woWorkOrder.woShippingInfoId , 'view' ]" >{{woWorkOrder.woShippingInfoId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/wo-work-order', woWorkOrder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wo-work-order', woWorkOrder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'wo-work-order', { outlets: { popup: woWorkOrder.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity WoCustomsBrokerage.
+    -->
+    <changeSet id="20190507104746-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="wo_customs_brokerage_id"
+                                 baseTableName="wo_customs_brokerage_wo_transport_modes"
+                                 constraintName="wo_customs_brokerage_wo_transpo_wo_customs_brokerage_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_customs_brokerage"/>
+
+        <addForeignKeyConstraint baseColumnNames="wo_transport_modes_id"
+                                 baseTableName="wo_customs_brokerage_wo_transport_modes"
+                                 constraintName="wo_customs_brokerage_wo_transpo_wo_transport_modes_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_transport_modes"/>
+        
+    </changeSet>
+</databaseChangeLog>

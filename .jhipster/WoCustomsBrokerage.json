@@ -1,0 +1,63 @@
+{
+    "name": "WoCustomsBrokerage",
+    "fields": [
+        {
+            "fieldName": "monthlyImportShipment",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "monthlyExportShipment",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "shipmentValue",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "productInfo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "woTransportModes",
+            "otherEntityRelationshipName": "woCustomsBrokerage",
+            "relationshipName": "woTransportModes",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woWorkOrder",
+            "otherEntityRelationshipName": "woCustomsBrokerage",
+            "relationshipName": "woWorkOrder",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507104746",
+    "entityTableName": "wo_customs_brokerage",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

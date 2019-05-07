@@ -1,0 +1,71 @@
+{
+    "name": "WoPickPack",
+    "fields": [
+        {
+            "fieldName": "sku",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "avgOrders",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "shipmentWeight",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "shipmentSize",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 20
+        },
+        {
+            "fieldName": "monthlyVolume",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 20
+        },
+        {
+            "fieldName": "isPromotionalInserts",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "woAdditionalServices",
+            "otherEntityRelationshipName": "woPickPack",
+            "relationshipName": "woAdditionalServices",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woWorkOrder",
+            "otherEntityRelationshipName": "woPickPack",
+            "relationshipName": "woWorkOrder",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507104748",
+    "entityTableName": "wo_pick_pack",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

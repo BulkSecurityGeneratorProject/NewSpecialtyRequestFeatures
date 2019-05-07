@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity WoPickPack.
+    -->
+    <changeSet id="20190507104748-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="wo_pick_pack_id"
+                                 baseTableName="wo_pick_pack_wo_additional_services"
+                                 constraintName="fk_wo_pick_pack_wo_additional_services_wo_pick_pack_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_pick_pack"/>
+
+        <addForeignKeyConstraint baseColumnNames="wo_additional_services_id"
+                                 baseTableName="wo_pick_pack_wo_additional_services"
+                                 constraintName="wo_pick_pack_wo_additional_serv_wo_additional_services_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_additional_services"/>
+        
+    </changeSet>
+</databaseChangeLog>

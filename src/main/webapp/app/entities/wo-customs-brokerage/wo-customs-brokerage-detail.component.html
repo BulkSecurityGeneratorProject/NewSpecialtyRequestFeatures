@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="woCustomsBrokerage">
+            <h2><span>Wo Customs Brokerage</span> {{woCustomsBrokerage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Monthly Import Shipment</span></dt>
+                <dd>
+                    <span>{{woCustomsBrokerage.monthlyImportShipment}}</span>
+                </dd>
+                <dt><span>Monthly Export Shipment</span></dt>
+                <dd>
+                    <span>{{woCustomsBrokerage.monthlyExportShipment}}</span>
+                </dd>
+                <dt><span>Shipment Value</span></dt>
+                <dd>
+                    <span>{{woCustomsBrokerage.shipmentValue}}</span>
+                </dd>
+                <dt><span>Product Info</span></dt>
+                <dd>
+                    <span>{{woCustomsBrokerage.productInfo}}</span>
+                </dd>
+                <dt><span>Wo Transport Modes</span></dt>
+                <dd>
+                    <span *ngFor="let woTransportModes of woCustomsBrokerage.woTransportModes; let last = last">
+                        <a [routerLink]="['/wo-transport-modes', woTransportModes?.id, 'view' ]">{{woTransportModes.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wo-customs-brokerage', woCustomsBrokerage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="woStorage">
+            <h2><span>Wo Storage</span> {{woStorage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Quantity</span></dt>
+                <dd>
+                    <span>{{woStorage.quantity}}</span>
+                </dd>
+                <dt><span>Space Requirement</span></dt>
+                <dd>
+                    <span>{{woStorage.spaceRequirement}}</span>
+                </dd>
+                <dt><span>Product Info</span></dt>
+                <dd>
+                    <span>{{woStorage.productInfo}}</span>
+                </dd>
+                <dt><span>Wo Package Type</span></dt>
+                <dd>
+                    <div *ngIf="woStorage.woPackageTypeId">
+                        <a [routerLink]="['/wo-package-type', woStorage.woPackageTypeId, 'view']">{{woStorage.woPackageTypeId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wo-storage', woStorage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

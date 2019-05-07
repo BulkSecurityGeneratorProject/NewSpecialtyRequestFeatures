@@ -1,0 +1,43 @@
+{
+    "name": "WoShippingInfo",
+    "fields": [
+        {
+            "fieldName": "monthlyShipVolume",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 20
+        },
+        {
+            "fieldName": "isCustomsBrokerage",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "woShippingServices",
+            "otherEntityRelationshipName": "woShippingInfo",
+            "relationshipName": "woShippingServices",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woWorkOrder",
+            "otherEntityRelationshipName": "woShippingInfo",
+            "relationshipName": "woWorkOrder",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507104751",
+    "entityTableName": "wo_shipping_info",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Wo Pick Packs</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wo-pick-pack" [routerLink]="['/wo-pick-pack/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Wo Pick Pack
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="woPickPacks">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sku</span></th>
+            <th><span>Avg Orders</span></th>
+            <th><span>Shipment Weight</span></th>
+            <th><span>Shipment Size</span></th>
+            <th><span>Monthly Volume</span></th>
+            <th><span>Is Promotional Inserts</span></th>
+            <th><span>Description</span></th>
+            <th><span>Wo Additional Services</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let woPickPack of woPickPacks ;trackBy: trackId">
+                <td><a [routerLink]="['/wo-pick-pack', woPickPack.id, 'view' ]">{{woPickPack.id}}</a></td>
+                <td>{{woPickPack.sku}}</td>
+                <td>{{woPickPack.avgOrders}}</td>
+                <td>{{woPickPack.shipmentWeight}}</td>
+                <td>{{woPickPack.shipmentSize}}</td>
+                <td>{{woPickPack.monthlyVolume}}</td>
+                <td>{{woPickPack.isPromotionalInserts}}</td>
+                <td>{{woPickPack.description}}</td>
+                <td>
+                    <span *ngFor="let woAdditionalServices of woPickPack.woAdditionalServices; let last = last">
+                            <a class="form-control-static" [routerLink]="['../wo-additional-services', woAdditionalServices?.id, 'view' ]">{{woAdditionalServices.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/wo-pick-pack', woPickPack.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wo-pick-pack', woPickPack.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'wo-pick-pack', { outlets: { popup: woPickPack.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

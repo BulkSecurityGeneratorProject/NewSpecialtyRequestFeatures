@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="woShippingInfo">
+            <h2><span>Wo Shipping Info</span> {{woShippingInfo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Monthly Ship Volume</span></dt>
+                <dd>
+                    <span>{{woShippingInfo.monthlyShipVolume}}</span>
+                </dd>
+                <dt><span>Is Customs Brokerage</span></dt>
+                <dd>
+                    <span>{{woShippingInfo.isCustomsBrokerage}}</span>
+                </dd>
+                <dt><span>Wo Shipping Services</span></dt>
+                <dd>
+                    <span *ngFor="let woShippingServices of woShippingInfo.woShippingServices; let last = last">
+                        <a [routerLink]="['/wo-shipping-services', woShippingServices?.id, 'view' ]">{{woShippingServices.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wo-shipping-info', woShippingInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

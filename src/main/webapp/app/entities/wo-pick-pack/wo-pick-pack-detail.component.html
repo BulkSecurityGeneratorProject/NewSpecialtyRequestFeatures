@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="woPickPack">
+            <h2><span>Wo Pick Pack</span> {{woPickPack.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Sku</span></dt>
+                <dd>
+                    <span>{{woPickPack.sku}}</span>
+                </dd>
+                <dt><span>Avg Orders</span></dt>
+                <dd>
+                    <span>{{woPickPack.avgOrders}}</span>
+                </dd>
+                <dt><span>Shipment Weight</span></dt>
+                <dd>
+                    <span>{{woPickPack.shipmentWeight}}</span>
+                </dd>
+                <dt><span>Shipment Size</span></dt>
+                <dd>
+                    <span>{{woPickPack.shipmentSize}}</span>
+                </dd>
+                <dt><span>Monthly Volume</span></dt>
+                <dd>
+                    <span>{{woPickPack.monthlyVolume}}</span>
+                </dd>
+                <dt><span>Is Promotional Inserts</span></dt>
+                <dd>
+                    <span>{{woPickPack.isPromotionalInserts}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{woPickPack.description}}</span>
+                </dd>
+                <dt><span>Wo Additional Services</span></dt>
+                <dd>
+                    <span *ngFor="let woAdditionalServices of woPickPack.woAdditionalServices; let last = last">
+                        <a [routerLink]="['/wo-additional-services', woAdditionalServices?.id, 'view' ]">{{woAdditionalServices.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/wo-pick-pack', woPickPack.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

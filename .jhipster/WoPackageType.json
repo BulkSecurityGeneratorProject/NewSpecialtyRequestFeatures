@@ -1,0 +1,31 @@
+{
+    "name": "WoPackageType",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woStorage",
+            "otherEntityRelationshipName": "woPackageType",
+            "relationshipName": "woStorage",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507104750",
+    "entityTableName": "wo_package_type",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

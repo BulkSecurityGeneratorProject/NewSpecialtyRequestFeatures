@@ -1,0 +1,66 @@
+<div>
+    <h2 id="page-heading">
+        <span>Wo Customs Brokerages</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wo-customs-brokerage" [routerLink]="['/wo-customs-brokerage/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Wo Customs Brokerage
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="woCustomsBrokerages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Monthly Import Shipment</span></th>
+            <th><span>Monthly Export Shipment</span></th>
+            <th><span>Shipment Value</span></th>
+            <th><span>Product Info</span></th>
+            <th><span>Wo Transport Modes</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let woCustomsBrokerage of woCustomsBrokerages ;trackBy: trackId">
+                <td><a [routerLink]="['/wo-customs-brokerage', woCustomsBrokerage.id, 'view' ]">{{woCustomsBrokerage.id}}</a></td>
+                <td>{{woCustomsBrokerage.monthlyImportShipment}}</td>
+                <td>{{woCustomsBrokerage.monthlyExportShipment}}</td>
+                <td>{{woCustomsBrokerage.shipmentValue}}</td>
+                <td>{{woCustomsBrokerage.productInfo}}</td>
+                <td>
+                    <span *ngFor="let woTransportModes of woCustomsBrokerage.woTransportModes; let last = last">
+                            <a class="form-control-static" [routerLink]="['../wo-transport-modes', woTransportModes?.id, 'view' ]">{{woTransportModes.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/wo-customs-brokerage', woCustomsBrokerage.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wo-customs-brokerage', woCustomsBrokerage.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'wo-customs-brokerage', { outlets: { popup: woCustomsBrokerage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

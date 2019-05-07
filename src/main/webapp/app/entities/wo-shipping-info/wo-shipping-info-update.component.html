@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-wo-shipping-info-heading">Create or edit a Wo Shipping Info</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!woShippingInfo.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_monthlyShipVolume">Monthly Ship Volume</label>
+                    <input type="number" class="form-control" name="monthlyShipVolume" id="field_monthlyShipVolume"
+                           formControlName="monthlyShipVolume"/>
+                    <div *ngIf="editForm.get('monthlyShipVolume').invalid && (editForm.get('monthlyShipVolume').dirty || editForm.get('monthlyShipVolume').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('monthlyShipVolume').errors.max">
+                            This field cannot be more than 20.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('monthlyShipVolume')?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_isCustomsBrokerage">Is Customs Brokerage</label>
+                    <input type="checkbox" class="form-control" name="isCustomsBrokerage" id="field_isCustomsBrokerage"
+                           formControlName="isCustomsBrokerage"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_woShippingServices">Wo Shipping Services</label>
+                    <select class="form-control" id="field_woShippingServices" multiple name="woShippingServices" formControlName="woShippingServices">
+                        <option [ngValue]="getSelected(editForm.get('woShippingServices').value, woShippingServicesOption)" *ngFor="let woShippingServicesOption of woshippingservices; trackBy: trackWoShippingServicesById">{{woShippingServicesOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

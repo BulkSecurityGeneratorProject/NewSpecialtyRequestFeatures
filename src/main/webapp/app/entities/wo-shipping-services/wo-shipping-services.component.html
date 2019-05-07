@@ -1,0 +1,54 @@
+<div>
+    <h2 id="page-heading">
+        <span>Wo Shipping Services</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wo-shipping-services" [routerLink]="['/wo-shipping-services/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Wo Shipping Services
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="woShippingServices">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let woShippingServices of woShippingServices ;trackBy: trackId">
+                <td><a [routerLink]="['/wo-shipping-services', woShippingServices.id, 'view' ]">{{woShippingServices.id}}</a></td>
+                <td>{{woShippingServices.name}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/wo-shipping-services', woShippingServices.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wo-shipping-services', woShippingServices.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'wo-shipping-services', { outlets: { popup: woShippingServices.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

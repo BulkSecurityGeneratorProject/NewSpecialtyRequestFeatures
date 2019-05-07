@@ -1,0 +1,51 @@
+{
+    "name": "WoStorage",
+    "fields": [
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "max"
+            ],
+            "fieldValidateRulesMax": 11
+        },
+        {
+            "fieldName": "spaceRequirement",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "productInfo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woPackageType",
+            "otherEntityRelationshipName": "woStorage",
+            "relationshipName": "woPackageType",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "woWorkOrder",
+            "otherEntityRelationshipName": "woStorage",
+            "relationshipName": "woWorkOrder",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190507104747",
+    "entityTableName": "wo_storage",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

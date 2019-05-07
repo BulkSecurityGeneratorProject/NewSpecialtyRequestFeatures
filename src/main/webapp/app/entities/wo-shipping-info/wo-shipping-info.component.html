@@ -1,0 +1,62 @@
+<div>
+    <h2 id="page-heading">
+        <span>Wo Shipping Infos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-wo-shipping-info" [routerLink]="['/wo-shipping-info/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Wo Shipping Info
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="woShippingInfos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Monthly Ship Volume</span></th>
+            <th><span>Is Customs Brokerage</span></th>
+            <th><span>Wo Shipping Services</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let woShippingInfo of woShippingInfos ;trackBy: trackId">
+                <td><a [routerLink]="['/wo-shipping-info', woShippingInfo.id, 'view' ]">{{woShippingInfo.id}}</a></td>
+                <td>{{woShippingInfo.monthlyShipVolume}}</td>
+                <td>{{woShippingInfo.isCustomsBrokerage}}</td>
+                <td>
+                    <span *ngFor="let woShippingServices of woShippingInfo.woShippingServices; let last = last">
+                            <a class="form-control-static" [routerLink]="['../wo-shipping-services', woShippingServices?.id, 'view' ]">{{woShippingServices.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/wo-shipping-info', woShippingInfo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/wo-shipping-info', woShippingInfo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'wo-shipping-info', { outlets: { popup: woShippingInfo.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

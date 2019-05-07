@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity WoShippingInfo.
+    -->
+    <changeSet id="20190507104751-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="wo_shipping_info_id"
+                                 baseTableName="wo_shipping_info_wo_shipping_services"
+                                 constraintName="fk_wo_shipping_info_wo_shipping_services_wo_shipping_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_shipping_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="wo_shipping_services_id"
+                                 baseTableName="wo_shipping_info_wo_shipping_services"
+                                 constraintName="wo_shipping_info_wo_shipping_se_wo_shipping_services_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wo_shipping_services"/>
+        
+    </changeSet>
+</databaseChangeLog>
